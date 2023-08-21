@@ -35,12 +35,7 @@ from utils.utils_fit import fit_one_epoch
    如果只是训练了几个Step是不会保存的，Epoch和Step的概念要捋清楚一下。
 '''
 if __name__ == "__main__":
-    print(torch.cuda.is_available())
-    #---------------------------------#
-    #   Cuda    是否使用Cuda
-    #           没有GPU可以设置成False
-    #---------------------------------#
-    Cuda = True
+    Cuda = torch.cuda.is_available()
     #-----------------------------------------------------#
     #   num_classes     训练自己的数据集必须要修改的
     #                   自己需要的分类个数+1，如2+1

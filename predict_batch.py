@@ -1,3 +1,4 @@
+import datetime
 import os
 
 from PIL import Image
@@ -7,7 +8,8 @@ if __name__ == "__main__":
     name_classes = ["background", "dark pattern"]
     unet = Unet()
     folder_path = 'test_img'
-    output_folder = 'test_img/result'
+    time_str = datetime.datetime.strftime(datetime.datetime.now(), '%m_%d_%H')
+    output_folder = 'test_img/'+str(time_str)+'_result'
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
