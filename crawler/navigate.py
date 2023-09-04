@@ -36,19 +36,15 @@ if __name__ == "__main__":
 
             for icon in icons:
                 if icon.text and icon.text.isascii():
-                    try:
-                        href = icon.get_attribute("href")
-                        if href is not None and not compare_similarity(icon.text, href, 0.8):
-                            print(f"misdirection, you are out icon_text:{icon.text} - href:{href}")
-                            with open("misdirection.txt", "a") as file:
-                                file.write(f"{random_website} - icon_text:{icon.text} - href:{href}\n")
-                            #break
-                        else:
-                            pass
-                            print(f"{random_website} - icon_text:{icon.text} - href:{href}\n")
-                    except Exception as e:
-                        print(f"inner Error occurred while accessing {random_website}: {str(e)}")
-                        continue
+                    href = icon.get_attribute("href")
+                    if href is not None and not compare_similarity(icon.text, href, 0.8):
+                        print(f"misdirection, you are out icon_text:{icon.text} - href:{href}")
+                        with open("misdirection.txt", "a") as file:
+                            file.write(f"{random_website} - icon_text:{icon.text} - href:{href}\n")
+                        #break
+                    else:
+                        pass
+                        print(f"{random_website} - icon_text:{icon.text} - href:{href}\n")
         except Exception as e:
             #continue
             print(f"Error occurred while accessing {random_website}: {str(e)}")

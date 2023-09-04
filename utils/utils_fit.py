@@ -9,7 +9,7 @@ from utils.utils_metrics import f_score
 
 
 def fit_one_epoch(model_train, model, loss_history, eval_callback, optimizer, epoch, epoch_step, epoch_step_val, gen, gen_val, Epoch, cuda,
-                   iou_loss, dice_loss, focal_loss, cls_weights, num_classes, save_period, save_dir, local_rank=0):
+                   edge_loss, iou_loss, dice_loss, focal_loss, cls_weights, num_classes, save_period, save_dir, local_rank=0):
     total_loss      = 0
     total_f_score   = 0
 
@@ -52,6 +52,8 @@ def fit_one_epoch(model_train, model, loss_history, eval_callback, optimizer, ep
         #leo
         if iou_loss:
             loss = loss + Iou_loss(outputs, pngs)
+        if edge_loss:
+            loss += Edge_loss(outputs, pngs)
 
         with torch.no_grad():
             #-------------------------------#

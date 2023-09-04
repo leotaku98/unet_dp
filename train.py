@@ -123,7 +123,7 @@ if __name__ == "__main__":
     #------------------------------------------------------------------#
     Init_Epoch          = 0
     Freeze_Epoch        = 50
-    Freeze_batch_size   = 2
+    Freeze_batch_size   = 8
     #------------------------------------------------------------------#
     #   解冻阶段训练参数
     #   此时模型的主干不被冻结了，特征提取网络会发生改变
@@ -132,7 +132,7 @@ if __name__ == "__main__":
     #   Unfreeze_batch_size     模型在解冻后的batch_size
     #------------------------------------------------------------------#
     UnFreeze_Epoch      = 100
-    Unfreeze_batch_size = 2
+    Unfreeze_batch_size = 8
     #------------------------------------------------------------------#
     #   Freeze_Train    是否进行冻结训练
     #                   默认先冻结主干训练后解冻训练。
@@ -201,6 +201,7 @@ if __name__ == "__main__":
     focal_loss      = True
     #iou loss is for penalizing boundary not as same as input data
     iou_loss = False # leo
+    edge_loss = True
 
     #------------------------------------------------------------------#
     #   是否给不同种类赋予不同的损失权值，默认是平衡的。
@@ -418,7 +419,7 @@ if __name__ == "__main__":
 
             fit_one_epoch(model_train, model, loss_history, eval_callback, optimizer, epoch,
                     epoch_step, epoch_step_val, gen, gen_val, UnFreeze_Epoch, Cuda,
-                           iou_loss, dice_loss, focal_loss, cls_weights, num_classes, save_period, save_dir, local_rank)
+                           edge_loss, iou_loss, dice_loss, focal_loss, cls_weights, num_classes, save_period, save_dir, local_rank)
 
 
 
